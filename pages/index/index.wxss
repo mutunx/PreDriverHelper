@@ -1,0 +1,57 @@
+/**index.wxss**/
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.tablist{
+  display: flex;
+  height: 80rpx;
+}
+.tablist .item {
+  flex: auto;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+  font-size: 11pt;
+  
+}  
+.tablist .item.select::after {
+    content: "";
+    height: 3rpx;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #e64340;
+}
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #e64340;
+}
+.out {
+  flex: auto;
+  width: 100%;
+}
+.leftBtn {
+  flex:2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 3px solid #e64340;
+}
+.rightBtn {
+  flex:1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 3px solid #e64340;
+}

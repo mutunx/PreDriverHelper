@@ -1,0 +1,25 @@
+<view class='tablist'>
+  <view wx:for="{{tabList}}" class='item {{current==index?"select":""}}' data-pos='{{index}}' bindtap='tabItemClick' >
+    <text>{{item}}</text>
+  </view>
+</view>
+
+<view class="container">
+  <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
+    <swiper-item wx:for="{{tabList}}">
+      <view class="content">
+        <text>题目:雨天行车，遇撑雨伞和穿雨衣的行人在公路上行走时，应怎样做？</text>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{items}}">
+            <radio value="{{item.name}}" checked="{{item.checked}}" />
+              {{item.value}}
+          </label>
+        </radio-group>
+        <textarea>答案解析:试题解释：只有C最和谐。</textarea>
+      </view>
+      <view>
+        答对 0 答错 0   1/100
+      </view>
+    </swiper-item>
+  </swiper>
+</view> 

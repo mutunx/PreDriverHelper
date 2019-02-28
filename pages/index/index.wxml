@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<view class='tablist'>
+  <view wx:for="{{tabList}}" class='item {{current==index?"select":""}}' data-pos='{{index}}' bindtap='tabItemClick' >
+    <text>{{item}}</text>
+  </view>
+</view>
+<swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
+  <swiper-item wx:for="{{tabList}}">
+    <view class="container">
+      <!-- <text>{{item}}</text> -->
+      
+      <view class='leftBtn'>
+        <button>顺序答题</button>
+        <button>全真模拟</button>
+      </view>
+      <view class='rightBtn'>
+        <button>我的错题</button>
+        <button>随机答题</button>
+        <button>专项答题</button>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
+<!-- <view class="container">
+<text>{{tabList[current]}}</text>
+</view> -->

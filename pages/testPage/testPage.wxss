@@ -1,0 +1,50 @@
+/* pages/testPage/testPage.wxss */
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.tablist {
+  display: flex;
+  height:80rpx;
+}
+.tablist .item {
+  flex:auto;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  font-size: 11pt;
+}
+.tablist .item.select::after {
+    content: "";
+    height: 3rpx;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #e64340;
+}
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+.out {
+  flex: auto;
+  height: 100%;
+  width: 100%;
+  border: 3px solid #e64340;
+}
+.content {
+  height:92%;
+  border: 3px solid #e64340;
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+}

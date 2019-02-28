@@ -1,0 +1,31 @@
+{
+  "pages":[
+    "pages/testPage/testPage",
+    "pages/index/index",
+    "pages/statistic/statistic",
+    "pages/user/user",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeCh2at",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "text": "答题"
+        },
+        {
+          "pagePath": "pages/statistic/statistic",
+          "text": "答题统计"
+        },
+        {
+          "pagePath": "pages/user/user",
+          "text": "个人中心"
+        }
+      ]
+  }
+}
