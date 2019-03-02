@@ -32,19 +32,25 @@ page {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
+    /* border: 3px solid #e64340; */
 }
 .out {
-  flex: auto;
-  height: 100%;
+  flex-grow: 2;
+  height: 1100rpx;
   width: 100%;
-  border: 3px solid #e64340;
+  /* border: 3px solid #e64340; */
 }
 .content {
   height:92%;
-  border: 3px solid #e64340;
-}
-.radio-group {
   display: flex;
   flex-direction: column;
+  /* border: 3px solid #e64340; */
+}
+
+.radio {
+  display: flex;
+  flex-direction: column;
+}
+.radio .wx-checkbox-input.wx-checkbox-input-checked {
+  background: red;
 }

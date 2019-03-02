@@ -1,18 +1,17 @@
 // pages/testPage/testPage.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
       tabList:["刷题模式","背题模式"],
-      items:[
-        { name: "A", value:"以正常速度行驶"},
-        { name: "B", value: "持续鸣喇叭示意其让道"},
-        { name: "C", value: "加速绕行" },
-        { name: "D", value: "提前鸣喇叭，并适当降低车速" }
-      ],
-      current:0
+      items:[      ],
+      current:0,
+      showResult:false,
+      trueNum:0,
+      worryNum:0,
+      answer:['D','A','B','C','D'],
+      userAnswer:[],
   },
 
   /**
@@ -22,6 +21,33 @@ Page({
     this.setData({
       current: e.currentTarget.dataset.pos
     })
+  },
+  /**
+   * 题目切换
+   */
+  contentChange: function(e) {
+    this.setData({
+      showResult: false
+    })
+  },
+  /**
+   * 选择选项
+   */
+  radioChange: function(e) {
+    var myThis = this;
+    // console.log(e.currentTarget.dataset.pos)
+    var qIndex = e.currentTarget.dataset.pos;
+    // console.log(e.detail)
+    // console.log(myThis.data.items[qIndex].val)
+    console.log(e)
+    if(myThis.data.items[qIndex].val === e.detail.value) {
+      myThis.setData({ trueNum: myThis.data.trueNum+1})
+    } else {
+      myThis.setData({ worryNum: myThis.data.worryNum+1})
+    }
+    
+    myThis.setData({showResult:true})
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -34,7 +60,23 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var myThis = this;
+    wx.request({
+      url: 'https://apicloud.mob.com/tiku/kemu1/query', // 仅为示例，并非真实的接口地址
+      data: {
+        key: '2a1e2819ba25c',
+        page: '1',
+        size: '20'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        myThis.setData({
+          items: res.data.result.list
+        }) 
+      }
+    })
   },
 
   /**

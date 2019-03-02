@@ -6,19 +6,22 @@
 
 <view class="container">
   <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
-    <swiper-item wx:for="{{tabList}}">
+    <swiper-item wx:for="{{items}}" >
       <view class="content">
-        <text>题目:雨天行车，遇撑雨伞和穿雨衣的行人在公路上行走时，应怎样做？</text>
-        <radio-group class="radio-group" bindchange="radioChange">
-          <label class="radio" wx:for="{{items}}">
-            <radio value="{{item.name}}" checked="{{item.checked}}" />
-              {{item.value}}
+        <text>题目:{{item.title}}</text>
+        <radio-group class="radio-group" bindchange="radioChange" data-pos='{{index}}'>
+          <label class="radio">
+            <radio value="1" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.a}}</radio><br/>
+            <radio value="2" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.b}}</radio><br/>
+            <radio value="3" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.c}}</radio><br/>
+            <radio value="4" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.d}}</radio><br/>
           </label>
         </radio-group>
-        <textarea>答案解析:试题解释：只有C最和谐。</textarea>
+        <text wx:if="{{showResult}}">正确答案:{{answer[item.val]}}</text>
+        <textarea wx:if="{{showResult}}">{{item.explainText}}</textarea>
       </view>
       <view>
-        答对 0 答错 0   1/100
+        答对 {{trueNum}} 答错 {{worryNum}}   {{index}}/{{items.length}}
       </view>
     </swiper-item>
   </swiper>
