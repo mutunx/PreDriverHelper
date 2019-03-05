@@ -9,16 +9,22 @@
     <swiper-item wx:for="{{items}}" >
       <view class="content">
         <text>题目:{{item.title}}</text>
-        <radio-group class="radio-group" bindchange="radioChange" data-pos='{{index}}'>
+        <!-- <radio-group class="radio-group" bindchange="radioChange" data-pos='{{index}}'>
           <label class="radio">
             <radio value="1" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.a}}</radio><br/>
             <radio value="2" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.b}}</radio><br/>
             <radio value="3" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.c}}</radio><br/>
             <radio value="4" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.d}}</radio><br/>
           </label>
-        </radio-group>
-        <text wx:if="{{showResult}}">正确答案:{{answer[item.val]}}</text>
-        <textarea wx:if="{{showResult}}">{{item.explainText}}</textarea>
+        </radio-group> -->
+        <view class='chose-btns' bindtap='tapItem' data-pos="{{index}}">
+          <button id="1" type="{{choosedAnswers[index][1]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.a}}</button>
+          <button id="2" type="{{choosedAnswers[index][2]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.b}}</button>
+          <button id="3" type="{{choosedAnswers[index][3]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.c}}</button>
+          <button id="4" type="{{choosedAnswers[index][4]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.d}}</button>
+        </view>
+        <!-- <text wx:if="{{choosedAnswers[index][0]==1?true:flase}}">正确答案:{{answer[item.val]}}</text> -->
+        <textarea wx:if="{{choosedAnswers[index][0]==1?true:flase}}">{{item.explainText}}</textarea>
       </view>
       <view>
         答对 {{trueNum}} 答错 {{worryNum}}   {{index}}/{{items.length}}

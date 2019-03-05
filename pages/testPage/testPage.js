@@ -8,10 +8,12 @@ Page({
       items:[      ],
       current:0,
       showResult:false,
+      choosedAnswers:[],
       trueNum:0,
       worryNum:0,
       answer:['D','A','B','C','D'],
       userAnswer:[],
+    types: ['default', 'default','default', 'default', 'default'],
   },
 
   /**
@@ -27,7 +29,7 @@ Page({
    */
   contentChange: function(e) {
     this.setData({
-      showResult: false
+      // types: ['default', 'default', 'default', 'default', 'default']
     })
   },
   /**
@@ -48,6 +50,32 @@ Page({
     
     myThis.setData({showResult:true})
     
+  },
+
+  tapItem: function(e) {
+    var myThis = this
+    var qIndex = e.currentTarget.dataset.pos;
+    var rightAnswer = myThis.data.items[qIndex].val
+    var chooseAnswer = e.target.id
+    var chooses = [0, 'default', 'default', 'default', 'default']
+    if (rightAnswer === chooseAnswer) {
+      myThis.setData({ trueNum: myThis.data.trueNum + 1 })
+      chooses[rightAnswer] = 'primary'
+    } else {
+      myThis.setData({ worryNum: myThis.data.worryNum + 1 })
+      chooses[rightAnswer] = 'primary'
+      chooses[chooseAnswer] = "warn"
+    }
+    chooses[0] = 1
+    // console.log(chooses)
+    var list = myThis.data.choosedAnswers
+    list[qIndex] = chooses
+    // console.log(list)
+    myThis.setData({ 
+      showResult: true,
+      // types : chooses,
+      choosedAnswers : list
+      })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -72,8 +100,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        var list = []
+        for(var i=1; i<21; i++) {
+          list[i] = [0, 'default', 'default', 'default', 'default']
+        }
         myThis.setData({
-          items: res.data.result.list
+          items: res.data.result.list,
+          choosedAnswers : list
         }) 
       }
     })
