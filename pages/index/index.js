@@ -18,6 +18,17 @@ Page({
       current: e.currentTarget.dataset.pos
     })
   },
+  orderExam: function (e) {
+    var mythis = this
+    // console.log(mythis.data.current)
+    var current = mythis.data.current;
+    wx.navigateTo({
+      url: '/pages/testPage/testPage?current='+current,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   /**
      * 内容区域swiper的切换事件
      */

@@ -5,12 +5,12 @@
   </view>
 </view>
 <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
-  <swiper-item wx:for="{{tabList}}">
+  <swiper-item wx:for="{{tabList}}" >
     <view class="container">
       <!-- <text>{{item}}</text> -->
       
       <view class='leftBtn'>
-        <button>顺序答题</button>
+        <button bindtap='orderExam'>顺序答题</button>
         <button>全真模拟</button>
       </view>
       <view class='rightBtn'>

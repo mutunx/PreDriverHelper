@@ -6,7 +6,7 @@
 
 <view class="container">
   <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
-    <swiper-item wx:for="{{items}}" >
+    <swiper-item wx:for="{{items}}"  wx:key="unique">
       <view class="content">
         <text>题目:{{item.title}}</text>
         <!-- <radio-group class="radio-group" bindchange="radioChange" data-pos='{{index}}'>
@@ -27,7 +27,7 @@
         <textarea wx:if="{{choosedAnswers[index][0]==1?true:flase}}">{{item.explainText}}</textarea>
       </view>
       <view>
-        答对 {{trueNum}} 答错 {{worryNum}}   {{index}}/{{items.length}}
+        答对 {{trueNum}} 答错 {{worryNum}}   {{index+1}}/{{total}}
       </view>
     </swiper-item>
   </swiper>
