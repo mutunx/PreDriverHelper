@@ -16,7 +16,7 @@
       <view class='rightBtn'>
         <button>我的错题</button>
         <button>随机答题</button>
-        <button>专项答题</button>
+        <button bindtap='sortExam'>专项答题</button>
       </view>
     </view>
   </swiper-item>

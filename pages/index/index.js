@@ -5,7 +5,7 @@ const app = getApp()
 Page({
   data: {
     tabList:["科目一","科目四"],
-    current:0
+    current:0 //科目一0,科目四1
   },
   onLoad: function () {
     
@@ -18,12 +18,28 @@ Page({
       current: e.currentTarget.dataset.pos
     })
   },
+  /**
+   * 顺序答题
+   */
   orderExam: function (e) {
-    var mythis = this
-    // console.log(mythis.data.current)
-    var current = mythis.data.current;
+    var that = this
+    // console.log(that.data.current)
+    var current = that.data.current;
     wx.navigateTo({
       url: '/pages/testPage/testPage?current='+current,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  /**
+   * 分类答题
+   */
+  sortExam: function (e) {
+    var that = this
+    var current = that.data.current;
+    ws:wx.navigateTo({
+      url: '/pages/testPage/sortPage?current=' + current,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},

@@ -17,6 +17,9 @@ Page({
       total:0, //题库总数
       pageIndex:0,
       pageSize:5,
+      isSort: -1, //是不是分类答题
+      url:"",
+      cid:-1,
   },
 
   /**
@@ -32,7 +35,7 @@ Page({
    */
   contentChange: function(e) {
     // console.log(e.detail.current)
-    var myThis = this
+    var that = this
     var current = e.detail.current;
     var pageIndex = this.data.pageIndex
     var pageSize = this.data.pageSize
@@ -41,27 +44,27 @@ Page({
     if(current+1 >= (pageIndex+1)*pageSize) {
       //获取下一页题目
       pageIndex += 1;
-      myThis.setData({pageIndex:pageIndex});
+      that.setData({pageIndex:pageIndex});
       wx:wx.request({
         url: 'http://localhost:8080/question/getAll',
         data: {
-          pageIndex: myThis.data.pageIndex,
-          pageSize: myThis.data.pageSize,
-          type: myThis.data.type,
+          pageIndex: that.data.pageIndex,
+          pageSize: that.data.pageSize,
+          type: that.data.type,
         },
         method: 'POST',
         header: {
           'content-type': 'application/x-www-form-urlencoded; charset=UTF-8' 
         },
         success: function(res) {
-          var items = myThis.data.items
+          var items = that.data.items
           var newItems = res.data.data
           for (var i = 0; i < newItems.length; i++) {
             items.push(newItems[i])
 
           }
           console.log("items",items)
-          myThis.setData({items:items})
+          that.setData({items:items})
           
         },
         fail: function(res) {},
@@ -74,37 +77,37 @@ Page({
    * 选择选项
    */
   radioChange: function(e) {
-    var myThis = this;
+    var that = this;
     // console.log(e.currentTarget.dataset.pos)
     var qIndex = e.currentTarget.dataset.pos; //获取当前题目的下标
     // console.log(e.detail)
-    // console.log(myThis.data.items[qIndex].val)
+    // console.log(that.data.items[qIndex].val)
     console.log(e)
-    if(myThis.data.items[qIndex].val === e.detail.value) {  //判断答案是否正确
-      myThis.setData({ trueNum: myThis.data.trueNum+1})
+    if(that.data.items[qIndex].val === e.detail.value) {  //判断答案是否正确
+      that.setData({ trueNum: that.data.trueNum+1})
     } else {
-      myThis.setData({ worryNum: myThis.data.worryNum+1})
+      that.setData({ worryNum: that.data.worryNum+1})
     }
     
-    myThis.setData({showResult:true})  //显示答案
+    that.setData({showResult:true})  //显示答案
     
   },
 /**
  * 点击选项
  */
   tapItem: function(e) {
-    var myThis = this
+    var that = this
     var qIndex = e.currentTarget.dataset.pos;
-    var rightAnswer = myThis.data.items[qIndex].var
+    var rightAnswer = that.data.items[qIndex].var
     var chooseAnswer = e.target.id
     var chooses = [0, 'default', 'default', 'default', 'default']
     // console.log("rightAnswer:",rightAnswer);
     // console.log("chooseAnswwer",chooseAnswer);
     if (rightAnswer === chooseAnswer) {
-      myThis.setData({ trueNum: myThis.data.trueNum + 1 })
+      that.setData({ trueNum: that.data.trueNum + 1 })
       chooses[rightAnswer] = 'primary'
     } else {
-      myThis.setData({ worryNum: myThis.data.worryNum + 1 })
+      that.setData({ worryNum: that.data.worryNum + 1 })
       chooses[rightAnswer] = 'primary'
       chooses[chooseAnswer] = "warn"
     }
@@ -112,10 +115,10 @@ Page({
     chooses[0] = 1
     // console.log(chooses)
     //修改用户的答案集
-    var list = myThis.data.choosedAnswers
+    var list = that.data.choosedAnswers
     list[qIndex] = chooses
     // console.log(list)
-    myThis.setData({ 
+    that.setData({ 
       showResult: true,
       // types : chooses,
       choosedAnswers : list
@@ -127,9 +130,11 @@ Page({
   onLoad: function (options) {
     console.log(options)
     // 获取科目几
+    var cid = (options.cid == null) ? -1:options.cid;
     var type = (options.current==0) ? 1:4;
     this.setData({
       type:type,
+      cid:cid,
     })
   },
 
@@ -137,8 +142,26 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    var myThis = this;
+    var that = this;
     // console.log(current)
+    var url = ""
+    var data = {}
+    if(this.data.cid > -1) {
+      url = "http://apicloud.mob.com/tiku/shitiku/query"
+      data = {
+        key: '2a1e2819ba25c',
+        page: that.data.pageIndex,
+        size: that.data.pageSize,
+        cid: this.data.cid,
+      }
+    } else {
+      url = "http://localhost:8080/question/getAll"
+      data = {
+        pageIndex: that.data.pageIndex,
+        pageSize: that.data.pageSize,
+        type: that.data.type,
+      }
+    }
     wx.request({
       // url: 'https://apicloud.mob.com/tiku/kemu1/query', // 通过api获得题目
       // data: {
@@ -146,12 +169,8 @@ Page({
       //   page: '1',
       //   size: '20'
       // },
-      url:  'http://localhost:8080/question/getAll',
-      data: {
-          pageIndex: myThis.data.pageIndex,
-          pageSize: myThis.data.pageSize,
-          type:myThis.data.type,
-      },
+      url:  url,
+      data: data,
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8' // 默认值
@@ -159,13 +178,13 @@ Page({
       success(res) {
         var list = []
         console.log(res)
-        var pageIndex = myThis.data.pageIndex;
-        var pageSize = myThis.data.pageSize;
+        var pageIndex = that.data.pageIndex;
+        var pageSize = that.data.pageSize;
         //初始化用户答题集
         for(var i= pageIndex*pageSize; i < (pageIndex+1)*pageSize; i++) {
           list[i] = [0, 'default', 'default', 'default', 'default']
         }
-        myThis.setData({
+        that.setData({
           items: res.data.data,
           choosedAnswers : list,
           total: res.data.total,

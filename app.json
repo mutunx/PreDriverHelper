@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/testPage/sortPage",
     "pages/testPage/testPage",
     "pages/statistic/statistic",
     "pages/user/user",
