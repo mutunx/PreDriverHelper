@@ -5,7 +5,7 @@
 </view>
 
 <view class="container">
-  <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
+  <swiper class='out' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
     <swiper-item wx:for="{{items}}"  wx:key="unique">
       <view class="content">
         <text>题目:{{item.title}}</text>
@@ -17,9 +17,14 @@
             <radio value="4" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.d}}</radio><br/>
           </label>
         </radio-group> -->
+        <view wx:if="{{item.file}}">
+          <image src='{{item.file}}'></image>
+        </view>
         <view class='chose-btns' bindtap='tapItem' data-pos="{{index}}">
-          <button id="1" type="{{choosedAnswers[index][1]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.a}}</button>
-          <button id="2" type="{{choosedAnswers[index][2]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.b}}</button>
+          <button wx:if="{{item.a}}" id="1" type="{{choosedAnswers[index][1]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.a}}</button>
+          <button wx:elif="{{!item.a}}" id="1" type="{{choosedAnswers[index][1]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>正确</button>
+          <button id="2" wx:if="{{item.b}}" type="{{choosedAnswers[index][2]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.b}}</button>
+          <button wx:elif="{{!item.b}}" id="2" type="{{choosedAnswers[index][2]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>错误</button>
           <button id="3" type="{{choosedAnswers[index][3]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.c}}</button>
           <button id="4" type="{{choosedAnswers[index][4]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.d}}</button>
         </view>

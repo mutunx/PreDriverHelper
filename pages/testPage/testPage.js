@@ -5,6 +5,7 @@ Page({
    */
   data: {
       tabList:["刷题模式","背题模式"],
+      isShowMode:0,
       items:[      ], //题目集
       current:0,
       showResult:false,
@@ -16,7 +17,7 @@ Page({
       type:-1, //科目一:1 科目四:4
       total:0, //题库总数
       pageIndex:0,
-      pageSize:5,
+      pageSize:10,
       isSort: -1, //是不是分类答题
       url:"",
       cid:-1,
@@ -27,7 +28,7 @@ Page({
    */
   tabItemClick: function (e) {
     this.setData({
-      current: e.currentTarget.dataset.pos
+      isShowMode: e.currentTarget.dataset.pos
     })
   },
   /**
@@ -39,19 +40,33 @@ Page({
     var current = e.detail.current;
     var pageIndex = this.data.pageIndex
     var pageSize = this.data.pageSize
+    let url = "";
+    let data = {};
     console.log("current:",current,"pageIdex:",pageIndex,"pageSize:",pageSize)
     //如果刷到头就载入下一页的
     if(current+1 >= (pageIndex+1)*pageSize) {
       //获取下一页题目
       pageIndex += 1;
       that.setData({pageIndex:pageIndex});
-      wx:wx.request({
-        url: 'http://localhost:8080/question/getAll',
-        data: {
+      if (this.data.cid > -1) {
+        url = "http://apicloud.mob.com/tiku/shitiku/query"
+        data = {
+          key: '2a1e2819ba25c',
+          page: that.data.pageIndex,
+          size: that.data.pageSize,
+          cid: that.data.cid,
+        }
+      } else {
+        url = "http://localhost:8080/question/getAll"
+        data = {
           pageIndex: that.data.pageIndex,
           pageSize: that.data.pageSize,
           type: that.data.type,
-        },
+        }
+      }
+      wx:wx.request({
+        url: url,
+        data: data,
         method: 'POST',
         header: {
           'content-type': 'application/x-www-form-urlencoded; charset=UTF-8' 
@@ -98,7 +113,7 @@ Page({
   tapItem: function(e) {
     var that = this
     var qIndex = e.currentTarget.dataset.pos;
-    var rightAnswer = that.data.items[qIndex].var
+    var rightAnswer = that.data.items[qIndex].val
     var chooseAnswer = e.target.id
     var chooses = [0, 'default', 'default', 'default', 'default']
     // console.log("rightAnswer:",rightAnswer);
@@ -113,7 +128,7 @@ Page({
     }
     // 表示已回答
     chooses[0] = 1
-    // console.log(chooses)
+    console.log(chooses)
     //修改用户的答案集
     var list = that.data.choosedAnswers
     list[qIndex] = chooses
@@ -184,11 +199,20 @@ Page({
         for(var i= pageIndex*pageSize; i < (pageIndex+1)*pageSize; i++) {
           list[i] = [0, 'default', 'default', 'default', 'default']
         }
-        that.setData({
-          items: res.data.data,
-          choosedAnswers : list,
-          total: res.data.total,
-        }) 
+        if (that.data.cid > -1) {
+          that.setData({
+            items: res.data.result.list,
+            choosedAnswers: list,
+            total: res.data.result.total,
+          })
+        } else {
+          that.setData({
+            items: res.data.data,
+            choosedAnswers : list,
+            total: res.data.total,
+          }) 
+
+        }
       }
     })
   },

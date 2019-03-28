@@ -21,10 +21,11 @@ Page({
    * 获取分类题目
    */
   sortClick: function(e) {
+    var that = this
     // console.log(e);
     var cid = e.target.id;
     wx.navigateTo({
-      url: '/pages/testPage/testPage?cid='+cid+"&current="+current,
+      url: '/pages/testPage/testPage?cid='+cid+"&current="+that.data.current,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
