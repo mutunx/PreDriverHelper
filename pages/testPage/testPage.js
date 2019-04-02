@@ -184,11 +184,17 @@ Page({
     var wxTimer = new timer({
       beginTime: "01:00:00",
       complete: function () {
-        wx.navigateTo({
-          url: '/pages/testPage/scoreShow/scoreShow',
-          success: function (res) { },
-          fail: function (res) { },
-          complete: function (res) { },
+        wx.showModal({
+          title: 'fff',
+          content: '  您答对了0题\r\n答错了0题\r\n0题没有答\r\n总分\r\n及格or没及格',
+          showCancel: false,
+          confirmText: "返回主页",
+          success: function () {
+
+            wx: wx.navigateBack({
+              delta: 1,
+            })
+          }
         })
       }
     })

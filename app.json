@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/testPage/sortPage",
     "pages/testPage/testPage",
-    "pages/testPage/scoreShow/scoreShow",
     "pages/statistic/statistic",
     "pages/user/user",
     "pages/logs/logs"
