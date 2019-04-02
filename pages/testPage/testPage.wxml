@@ -5,7 +5,7 @@
 </view>
 
 <view class="container">
-  <swiper class='out' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
+  <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
     <swiper-item wx:for="{{items}}"  wx:key="unique">
       <view class="content">
         <text>题目:{{item.title}}</text>
@@ -32,7 +32,9 @@
         <textarea wx:if="{{choosedAnswers[index][0]==1?true:flase}}">{{item.explainText}}</textarea>
       </view>
       <view>
-        答对 {{trueNum}} 答错 {{worryNum}}   {{index+1}}/{{total}}
+        对:{{trueNum}} 错:{{worryNum}}   {{index+1}}/{{total}} 
+         计时:{{wxTimer}}
+        <button id='submit_exam' bindtap='submit_exam'>交卷</button>
       </view>
     </swiper-item>
   </swiper>

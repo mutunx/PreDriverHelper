@@ -54,3 +54,7 @@ page {
 .radio .wx-checkbox-input.wx-checkbox-input-checked {
   background: red;
 }
+#submit_exam {
+  display: inline;
+
+}

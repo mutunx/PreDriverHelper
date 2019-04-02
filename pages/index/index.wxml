@@ -11,7 +11,7 @@
       
       <view class='leftBtn'>
         <button bindtap='orderExam'>顺序答题</button>
-        <button>全真模拟</button>
+        <button bindtap='simulatedExam'>全真模拟</button>
       </view>
       <view class='rightBtn'>
         <button>我的错题</button>

@@ -1,4 +1,5 @@
 // pages/testPage/testPage.js
+var timer = require("../../utils/wxTimer.js");
 Page({
   /**
    * 页面的初始数据
@@ -21,6 +22,7 @@ Page({
       isSort: -1, //是不是分类答题
       url:"",
       cid:-1,
+      status:"",
   },
 
   /**
@@ -147,12 +149,30 @@ Page({
     // 获取科目几
     var cid = (options.cid == null) ? -1:options.cid;
     var type = (options.current==0) ? 1:4;
+    var status = (options.status == null) ? "":options.status;
     this.setData({
       type:type,
       cid:cid,
+      status:status,
     })
   },
-
+  /**
+   * 交卷按钮
+   */
+  submit_exam: function() {
+    wx.showModal({
+      title: 'fff',
+      content: '  您答对了0题\r\n答错了0题\r\n0题没有答\r\n总分\r\n及格or没及格',
+      showCancel: false,
+      confirmText:"返回主页",
+      success:function() {
+        
+        wx:wx.navigateBack({
+          delta: 1,
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -160,6 +180,19 @@ Page({
     var that = this;
     // console.log(current)
     var url = ""
+    //计时器
+    var wxTimer = new timer({
+      beginTime: "01:00:00",
+      complete: function () {
+        wx.navigateTo({
+          url: '/pages/testPage/scoreShow/scoreShow',
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
+      }
+    })
+    wxTimer.start(this);
     var data = {}
     if(this.data.cid > -1) {
       url = "http://apicloud.mob.com/tiku/shitiku/query"
@@ -168,6 +201,17 @@ Page({
         page: that.data.pageIndex,
         size: that.data.pageSize,
         cid: this.data.cid,
+      }
+    } else if(this.data.status !== "") {
+      that.setData({
+        pageIndex:1,
+        pageSize:100,
+      })
+      url = "http://localhost:8080/question/getRandom"
+      data = {
+        pageIndex: that.data.pageIndex,
+        pageSize: that.data.pageSize,
+        type: that.data.type,
       }
     } else {
       url = "http://localhost:8080/question/getAll"
@@ -204,6 +248,12 @@ Page({
             items: res.data.result.list,
             choosedAnswers: list,
             total: res.data.result.total,
+          })
+        } else if(that.data.status !== ""){
+          that.setData({
+            items: res.data.data,
+            choosedAnswers: list,
+            total: 100,
           })
         } else {
           that.setData({

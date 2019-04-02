@@ -1,0 +1,8 @@
+<!--pages/testPage/scoreShow/scoreShow.wxml-->
+<text>
+  您答对了0题
+    答错了0题
+    0题没有答
+    总分
+    及格or没及格
+</text>

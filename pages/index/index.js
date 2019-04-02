@@ -11,6 +11,20 @@ Page({
     
   },
   /**
+   * 全真模拟
+   */
+  simulatedExam: function(e) {
+    var that = this
+    // console.log(that.data.current)
+    var current = that.data.current;
+    wx.navigateTo({
+      url: '/pages/testPage/testPage?current=' + current+'&status=simlated',
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+  /**
      * Tab的点击切换事件
      */
   tabItemClick: function (e) {
