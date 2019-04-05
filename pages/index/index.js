@@ -40,7 +40,7 @@ Page({
     // console.log(that.data.current)
     var current = that.data.current;
     wx.navigateTo({
-      url: '/pages/testPage/testPage?current='+current,
+      url: '/pages/testPage/testPage?current=' + current + "&status=order",
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
@@ -53,7 +53,7 @@ Page({
     var that = this
     var current = that.data.current;
     ws:wx.navigateTo({
-      url: '/pages/testPage/sortPage?current=' + current,
+      url: '/pages/testPage/sortPage?current=' + current +"&status=sort",
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},

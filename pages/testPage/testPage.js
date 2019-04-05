@@ -29,6 +29,7 @@ Page({
    * 模式切换事件点击
    */
   tabItemClick: function (e) {
+    console.log(e)
     this.setData({
       isShowMode: e.currentTarget.dataset.pos
     })

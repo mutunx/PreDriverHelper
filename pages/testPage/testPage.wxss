@@ -1,4 +1,5 @@
 /* pages/testPage/testPage.wxss */
+
 page {
   display: flex;
   flex-direction: column;
@@ -57,4 +58,7 @@ page {
 #submit_exam {
   display: inline;
 
+}
+#simlated {
+  display: inline;
 }

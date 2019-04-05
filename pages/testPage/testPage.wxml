@@ -1,8 +1,4 @@
-<view class='tablist'>
-  <view wx:for="{{tabList}}" class='item {{current==index?"select":""}}' data-pos='{{index}}' bindtap='tabItemClick' >
-    <text>{{item}}</text>
-  </view>
-</view>
+
 
 <view class="container">
   <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
@@ -32,9 +28,12 @@
         <textarea wx:if="{{choosedAnswers[index][0]==1?true:flase}}">{{item.explainText}}</textarea>
       </view>
       <view>
-        对:{{trueNum}} 错:{{worryNum}}   {{index+1}}/{{total}} 
+        <view id='simlated' wx:if="{{status == 'simlated'}}"> 
          计时:{{wxTimer}}
         <button id='submit_exam' bindtap='submit_exam'>交卷</button>
+        </view>
+        
+        对:{{trueNum}} 错:{{worryNum}}   {{index+1}}/{{total}}
       </view>
     </swiper-item>
   </swiper>
