@@ -5,9 +5,29 @@ page {
   flex-direction: column;
   height: 100%;
 }
+.content {
+  font-size: 40rpx;
+  color: #88868b;
+}
+.btn_item {
+  margin: 2vw;
+  font-size: 38rpx;
+  border: none;
+  
+}
+.chose-btns {
+  padding: 3vw 5vw;
+  border-bottom: 1px solid #eee;
+  font-size: 28rpx;
+}
 .tablist {
   display: flex;
   height:80rpx;
+}
+.img {
+  width: 400rpx;
+  height: 400rpx;
+  
 }
 .tablist .item {
   flex:auto;
@@ -47,7 +67,12 @@ page {
   flex-direction: column;
   /* border: 3px solid #e64340; */
 }
-
+.statustab{
+  border-top:1px solid #eee;
+  font-size: 40rpx;
+  color: #736395;
+  text-align: center;
+}
 .radio {
   display: flex;
   flex-direction: column;

@@ -4,7 +4,7 @@
   <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
     <swiper-item wx:for="{{items}}"  wx:key="unique">
       <view class="content">
-        <text>题目:{{item.title}}</text>
+        <text>{{index+1}}:{{item.title}}</text>
         <!-- <radio-group class="radio-group" bindchange="radioChange" data-pos='{{index}}'>
           <label class="radio">
             <radio value="1" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.a}}</radio><br/>
@@ -13,21 +13,21 @@
             <radio value="4" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.d}}</radio><br/>
           </label>
         </radio-group> -->
-        <view wx:if="{{item.file}}">
-          <image src='{{item.file}}'></image>
+        <view   style='align-items: center;'  wx:if="{{item.file}}">
+          <image class='img' src='{{item.file}}'></image>
         </view>
         <view class='chose-btns' bindtap='tapItem' data-pos="{{index}}">
-          <button wx:if="{{item.a}}" id="1" type="{{choosedAnswers[index][1]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.a}}</button>
-          <button wx:elif="{{!item.a}}" id="1" type="{{choosedAnswers[index][1]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>正确</button>
-          <button id="2" wx:if="{{item.b}}" type="{{choosedAnswers[index][2]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.b}}</button>
-          <button wx:elif="{{!item.b}}" id="2" type="{{choosedAnswers[index][2]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>错误</button>
-          <button id="3" type="{{choosedAnswers[index][3]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.c}}</button>
-          <button id="4" type="{{choosedAnswers[index][4]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.d}}</button>
+          <button wx:if="{{item.a}}" class="btn_item" id="1" type="{{choosedAnswers[index][1]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.a}}</button>
+          <button wx:elif="{{!item.a}}" id="1" class="btn_item" type="{{choosedAnswers[index][1]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>正确</button>
+          <button id="2" wx:if="{{item.b}}" class="btn_item" type="{{choosedAnswers[index][2]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.b}}</button>
+          <button wx:elif="{{!item.b}}" id="2" class="btn_item" type="{{choosedAnswers[index][2]}}" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>错误</button>
+          <button id="3" type="{{choosedAnswers[index][3]}}" class="btn_item" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.c}}</button>
+          <button id="4" type="{{choosedAnswers[index][4]}}" class="btn_item" disabled='{{choosedAnswers[index][0]==1?true:flase}}'>{{item.d}}</button>
         </view>
         <!-- <text wx:if="{{choosedAnswers[index][0]==1?true:flase}}">正确答案:{{answer[item.val]}}</text> -->
-        <textarea wx:if="{{choosedAnswers[index][0]==1?true:flase}}">{{item.explainText}}</textarea>
+        <textarea style='font-size: 28rpx;' wx:if="{{choosedAnswers[index][0]==1?true:flase}}">{{item.explainText}}</textarea>
       </view>
-      <view>
+      <view class='statustab'>
         <view id='simlated' wx:if="{{status == 'simlated'}}"> 
          计时:{{wxTimer}}
         <button id='submit_exam' bindtap='submit_exam'>交卷</button>

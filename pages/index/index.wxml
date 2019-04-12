@@ -1,5 +1,6 @@
 <!--index.wxml-->
-<view class='tablist'>
+   
+  <view class='tablist'>
   <view wx:for="{{tabList}}" class='item {{current==index?"select":""}}' data-pos='{{index}}' bindtap='tabItemClick' >
     <text>{{item}}</text>
   </view>
@@ -8,16 +9,23 @@
   <swiper-item wx:for="{{tabList}}" >
     <view class="container">
       <!-- <text>{{item}}</text> -->
-      
-      <view class='leftBtn'>
-        <button bindtap='orderExam'>顺序答题</button>
-        <button bindtap='simulatedExam'>全真模拟</button>
-      </view>
-      <view class='rightBtn'>
-        <button>我的错题</button>
-        <button bindtap='orderExam'>随机答题</button>
-        <button bindtap='sortExam'>专项答题</button>
-      </view>
+      <view class='row1'>
+    <view bindchange="answer" class='picker' value="{{index}}" range="{{QBArray}}">
+      <view class='answer'  bindtap='orderExam'>顺序答题</view>
+    </view >
+    <view bindchange="study" class='picker' value="{{index}}" range="{{QBArray}}">
+      <view class='study' bindtap='simulatedExam'>全真模拟</view>
+    </view >
+  </view>
+  <view class='row2'>
+    <view bindchange="rank" class='picker' value="{{index}}" range="{{QBArray}}">
+      <view class='rank'bindtap='sortExam'>专项答题</view>
+    </view >
+    <view bindchange="wrong" class='picker' value="{{index}}" range="{{QBArray}}">
+      <view class='wrong'>我的错题</view>
+    </view >
+  </view>
+     
     </view>
   </swiper-item>
 </swiper>

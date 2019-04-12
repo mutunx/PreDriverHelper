@@ -10,6 +10,29 @@ Page({
   onLoad: function () {
     
   },
+  login: function(e) {
+    wx:wx.login({
+      success: function(res) {
+        console.log(res);
+        wx:wx.request({
+          url: 'http://localhost:8080/user/login?code='+res.code,
+          header: {},
+          method: 'POST',
+          dataType: 'json',
+          responseType: 'text',
+          success: function(res) {
+            console.log(res);
+          },
+          fail: function(res) {},
+          complete: function(res) {},
+        })
+      },
+      fail: function(res) {
+        console.log(res);
+      },
+      complete: function(res) {},
+    })
+  },
   /**
    * 全真模拟
    */

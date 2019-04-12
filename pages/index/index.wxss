@@ -27,14 +27,7 @@ page {
     right: 0;
     background: #e64340;
 }
-.container{
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid #e64340;
-}
+
 .out {
   flex: auto;
   width: 100%;
@@ -54,4 +47,109 @@ page {
   flex-direction: column;
   justify-content: space-around;
   border: 3px solid #e64340;
+}
+page{
+    font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Droid Sans Fallback', 'Microsoft Yahei', sans-serif;
+    width: 100%;
+    background: #ffffff;  
+}
+
+
+.head{
+  height: 280rpx;
+  background-color: #ffffff;
+  border-radius: 15rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+
+}
+
+.signIn{
+  display: flex;
+  width: 180rpx;
+  height: 180rpx;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+    border: 10rpx solid #ff5757;
+    margin-top: 20rpx;
+}
+
+.headBottom1{
+   display:flex;
+  align-items:center; 
+  justify-content:space-around;
+  margin-top: 10rpx;
+}
+
+.name1,.department1{
+  text-align: center;
+  font-size: 30rpx;
+  padding: 5rpx 15rpx 5rpx 15rpx;
+  background-color: #ff5757;
+   display: flex;
+   color: #ffffff;
+   border-radius: 30rpx;
+}
+
+
+.row1,.row2{
+  display: flex;
+  width: 600rpx;
+    margin-left: auto;
+  margin-right: auto;
+}
+
+.picker{
+  width: 280rpx;
+  height: 280rpx;
+  color: #ffffff;
+  font-size: 60rpx;
+  line-height: 280rpx;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30rpx;
+}
+.answer{
+  background-color: #ff5757;
+  border-radius: 15rpx;
+}
+
+.study{
+  background-color: #ff9800;
+  border-radius: 15rpx;
+}
+
+.rank{
+  background-color: #ba33cc;
+  border-radius: 15rpx;
+}
+
+.wrong{
+  background-color: #84d723;
+  border-radius: 15rpx;
+}
+
+.bottimBG{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150rpx;
+}
+
+.home{
+  width: 600rpx;
+  height: 120rpx;
+  background-color: #5CACEE;
+    border-radius: 15rpx;
+    text-align: center;
+    line-height: 120rpx;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30rpx;
+    color: #ffffff;
+    font-size: 40rpx;
 }

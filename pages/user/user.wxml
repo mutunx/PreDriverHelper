@@ -1,2 +1,10 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view class="userinfo">
+  <view class="userinfo-avatar">
+    <open-data  type="userAvatarUrl"></open-data>
+  </view>
+    <open-data type="userNickName"></open-data>
+    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+      登录
+    </button>
+</view>
