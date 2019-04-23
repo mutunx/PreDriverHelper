@@ -22,7 +22,7 @@
       <view class='rank'bindtap='sortExam'>专项答题</view>
     </view >
     <view bindchange="wrong" class='picker' value="{{index}}" range="{{QBArray}}">
-      <view class='wrong'>我的错题</view>
+      <view class='wrong' bindtap='wrong'>我的错题</view>
     </view >
   </view>
      

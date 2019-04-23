@@ -55,6 +55,17 @@ Page({
       current: e.currentTarget.dataset.pos
     })
   },
+  wrong: function(e) {
+    var that = this
+    // console.log(that.data.current)
+    var current = that.data.current;
+    wx.navigateTo({
+      url: '/pages/testPage/testPage?current=' + current + "&status=wrong",
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
   /**
    * 顺序答题
    */

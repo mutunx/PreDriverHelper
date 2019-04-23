@@ -38,7 +38,6 @@ Page({
     wx: wx.request({
       url: 'http://localhost:8080/user/login',
       data: {
-        code: res.code,
         userInfo: e.detail.userInfo
       },
       method: 'POST',

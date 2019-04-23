@@ -23,6 +23,7 @@ Page({
       url:"",
       cid:-1,
       status:"",
+      userInfo:{}
   },
 
   /**
@@ -179,6 +180,8 @@ Page({
    */
   onReady: function () {
     var that = this;
+    
+    console.log(that.data.userInfo)
     // console.log(current)
     var url = ""
     //计时器
@@ -209,7 +212,7 @@ Page({
         size: that.data.pageSize,
         cid: this.data.cid,
       }
-    } else if(this.data.status !== "") {
+    } else if (this.data.status === "simlated") {
       that.setData({
         pageIndex:1,
         pageSize:100,
@@ -220,6 +223,28 @@ Page({
         pageSize: that.data.pageSize,
         type: that.data.type,
       }
+    } else if (this.data.status === "wrong") {
+      console.log(that.data.userInfo)
+      wx: wx.getUserInfo({
+        withCredentials: true,
+        success: function (res) {
+          console.log(res.userInfo)
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+      url = "http://localhost:8080/user/getWorryPrograms"
+      data = {
+       avatarUrl:"https://wx.qlogo.cn/mmopen/vi_32/tPWjkpia1GDR5RWjTAHsOkDlvbmW7INRecPGiaibjB9IFzPgXsDWQvibuupR27Uylrr2WIVibDdmSj7a1jypVNYDH6Q/132",
+          city:"Wenzhou",
+          country:"China",
+          gender:1,
+          nickName:"木豚",
+          province:"Zhejiang",
+          language:"zh_CN"
+        
+      }
+      
     } else {
       url = "http://localhost:8080/question/getAll"
       data = {
@@ -256,7 +281,7 @@ Page({
             choosedAnswers: list,
             total: res.data.result.total,
           })
-        } else if(that.data.status !== ""){
+        } else if (that.data.status === "simlated"){
           that.setData({
             items: res.data.data,
             choosedAnswers: list,

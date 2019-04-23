@@ -13,7 +13,8 @@
             <radio value="4" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.d}}</radio><br/>
           </label>
         </radio-group> -->
-        <view   style='align-items: center;'  wx:if="{{item.file}}">
+        <view wx:if="{{item.file}}"  style='align-items: center;'  wx:if="{{item.file}}">
+        
           <image class='img' src='{{item.file}}'></image>
         </view>
         <view class='chose-btns' bindtap='tapItem' data-pos="{{index}}">
