@@ -1,133 +1,91 @@
-// pages/statistic/statistic.js
-import * as echarts from '../../ec-canvas/echarts';
-const app = getApp();
-function initChart(canvas, width, height) {
-  const chart = echarts.init(canvas, null, {
-    width: width,
-    height: height
-  });
-  canvas.setChart(chart);
-
-  var option = {
-    title: {
-      text: '测试下面legend的红色区域不应被裁剪',
-      left: 'center'
-    },
-    color: ["#37A2DA", "#67E0E3", "#9FE6B8"],
-    legend: {
-      data: ['A', 'B', 'C'],
-      top: 50,
-      left: 'center',
-      backgroundColor: 'red',
-      z: 100
-    },
-    grid: {
-      containLabel: true
-    },
-    tooltip: {
-      show: true,
-      trigger: 'axis'
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-      // show: false
-    },
-    yAxis: {
-      x: 'center',
-      type: 'value',
-      splitLine: {
-        lineStyle: {
-          type: 'dashed'
-        }
-      }
-      // show: false
-    },
-    series: [{
-      name: 'A',
-      type: 'line',
-      smooth: true,
-      data: [18, 36, 65, 30, 78, 40, 33]
-    }, {
-      name: 'B',
-      type: 'line',
-      smooth: true,
-      data: [12, 50, 51, 35, 70, 30, 20]
-    }, {
-      name: 'C',
-      type: 'line',
-      smooth: true,
-      data: [10, 30, 31, 50, 40, 20, 10]
-    }]
-  };
-
-  chart.setOption(option);
-  return chart;
-}
-
+var wxCharts = require('../../utils/wxcharts-min.js');
+var app = getApp();
+var lineChart = null;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  touchHandler: function (e) {
+    console.log(lineChart.getCurrentDataIndex(e));
+    lineChart.showToolTip(e, {
+      // background: '#7cb5ec',
+      format: function (item, category) {
+        return category + ' ' + item.name + ':' + item.data
+      }
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  createSimulationData: function () {
+    var categories = [];
+    var data = [];
+    for (var i = 0; i < 10; i++) {
+      categories.push('2016-' + (i + 1));
+      data.push(Math.random() * (20 - 10) + 10);
+    }
+    // data[4] = null;
+    return {
+      categories: categories,
+      data: data
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  updateData: function () {
+    var simulationData = this.createSimulationData();
+    var series = [{
+      name: '成交量1',
+      data: simulationData.data,
+      format: function (val, name) {
+        return val.toFixed(2) + '万';
+      }
+    }];
+    lineChart.updateData({
+      categories: simulationData.categories,
+      series: series
+    });
   },
+  onLoad: function (e) {
+    var windowWidth = 320;
+    try {
+      var res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    var simulationData = this.createSimulationData();
+    lineChart = new wxCharts({
+      canvasId: 'lineCanvas',
+      type: 'line',
+      categories: simulationData.categories,
+      animation: true,
+      // background: '#f5f5f5',
+      series: [{
+        name: '成交量1',
+        data: simulationData.data,
+        format: function (val, name) {
+          return val.toFixed(2) + '万';
+        }
+      }, {
+        name: '成交量2',
+        data: [2, 0, 0, 3, null, 4, 0, 0, 2, 0],
+        format: function (val, name) {
+          return val.toFixed(2) + '万';
+        }
+      }],
+      xAxis: {
+        disableGrid: true
+      },
+      yAxis: {
+        title: '成交金额 (万元)',
+        format: function (val) {
+          return val.toFixed(2);
+        },
+        min: 0
+      },
+      width: windowWidth,
+      height: 200,
+      dataLabel: false,
+      dataPointShape: true,
+      extra: {
+        lineStyle: 'curve'
+      }
+    });
   }
-})
+});

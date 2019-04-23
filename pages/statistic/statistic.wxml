@@ -1,4 +1,4 @@
-<!--pages/statistic/statistic.wxml-->
 <view class="container">
-  <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+    <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
+    <button type="primary" bindtap="updateData">更新数据</button>
 </view>
