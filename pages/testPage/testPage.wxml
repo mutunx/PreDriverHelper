@@ -4,7 +4,7 @@
   <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
     <swiper-item wx:for="{{items}}"  wx:key="unique">
       <view class="content">
-        <text>{{index+1}}:{{item.title}}</text>
+        <text>{{item.id}}:{{item.title}}</text>
         <!-- <radio-group class="radio-group" bindchange="radioChange" data-pos='{{index}}'>
           <label class="radio">
             <radio value="1" checked="{{item.checked}}" disabled='{{showResult}}'>{{item.a}}</radio><br/>

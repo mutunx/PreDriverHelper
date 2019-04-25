@@ -101,13 +101,16 @@ Page({
     var qIndex = e.currentTarget.dataset.pos; //获取当前题目的下标
     // console.log(e.detail)
     // console.log(that.data.items[qIndex].val)
-    console.log(e)
+
+    var isWorry = 0
     if(that.data.items[qIndex].val === e.detail.value) {  //判断答案是否正确
       that.setData({ trueNum: that.data.trueNum+1})
+      isWorry = 0
     } else {
       that.setData({ worryNum: that.data.worryNum+1})
+      isWorry = 1
     }
-    
+    console.log(isWorry)
     that.setData({showResult:true})  //显示答案
     
   },
@@ -122,13 +125,16 @@ Page({
     var chooses = [0, 'default', 'default', 'default', 'default']
     // console.log("rightAnswer:",rightAnswer);
     // console.log("chooseAnswwer",chooseAnswer);
+    var isWorry = 0
     if (rightAnswer === chooseAnswer) {
       that.setData({ trueNum: that.data.trueNum + 1 })
       chooses[rightAnswer] = 'primary'
+      isWorry = 0
     } else {
       that.setData({ worryNum: that.data.worryNum + 1 })
       chooses[rightAnswer] = 'primary'
       chooses[chooseAnswer] = "warn"
+      isWorry = 1
     }
     // 表示已回答
     chooses[0] = 1
@@ -142,6 +148,23 @@ Page({
       // types : chooses,
       choosedAnswers : list
       })
+      console.log(qIndex,isWorry)
+    wx: wx.request({
+      url: 'http://localhost:8080/question/updateQuestionInfo?qId=' + that.data.items[qIndex].id+"&isWorry="+isWorry+"&nickName=木豚",
+      header: {},
+      method: 'POST',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+      complete: function (res) {
+        console.log(res)
+      },
+    })
   },
   /**
    * 生命周期函数--监听页面加载
