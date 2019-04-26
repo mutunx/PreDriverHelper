@@ -1,4 +1,3 @@
 <view class="container">
-    <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
-    <button type="primary" bindtap="updateData">更新数据</button>
+    <canvas canvas-id="pieCanvas" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
 </view>

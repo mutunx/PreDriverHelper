@@ -184,10 +184,13 @@ Page({
   /**
    * 交卷按钮
    */
-  submit_exam: function() {
+  submit_exam: function(e) {
+    //console.log(e._relatedInfo.anchorRelatedText.split("\n")[3].split("交卷")[1])
+
+    var that = this
     wx.showModal({
-      title: 'fff',
-      content: '  您答对了0题\r\n答错了0题\r\n0题没有答\r\n总分\r\n及格or没及格',
+      title: '答题统计',
+      content: '  您的答题情况' + e._relatedInfo.anchorRelatedText.split("\n")[3].split("交卷")[1],
       showCancel: false,
       confirmText:"返回主页",
       success:function() {
