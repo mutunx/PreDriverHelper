@@ -4,7 +4,5 @@
     <open-data  type="userAvatarUrl"></open-data>
   </view>
     <open-data type="userNickName"></open-data>
-    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
-      登录
-    </button>
+<text>总答题数:{{count}}</text>
 </view>
