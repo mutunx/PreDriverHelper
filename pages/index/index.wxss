@@ -3,6 +3,7 @@ page {
   display: flex;
   flex-direction: column;
   height: 100%;
+  
 }
 .tablist{
   display: flex;
@@ -26,8 +27,13 @@ page {
     bottom: 0;
     right: 0;
     background: #e64340;
+    
 }
+.tablist .item.select{
 
+    color: #e64340;
+    
+}
 .out {
   flex: auto;
   width: 100%;
