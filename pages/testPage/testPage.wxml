@@ -2,8 +2,8 @@
 
 <view class="container">
   <swiper class='out' current='{{current}}' indicator-dots='{{flase}}' autoplay='{{flase}}' bindchange='contentChange'>
-    <swiper-item wx:for="{{items}}"  wx:key="unique">
-      <view class="content">
+    <swiper-item wx:for="{{items}}"  wx:key="unique" >
+      <scroll-view class="content" scroll-y="true" scroll-x="flase">
         <text wx:if="{{status === 'simlated'}}">{{index+1}}:{{item.title}}</text>
         <text wx:else>{{item.id}}:{{item.title}}</text>
         <!-- <radio-group class="radio-group" bindchange="radioChange" data-pos='{{index}}'>
@@ -28,7 +28,7 @@
         </view>
         <!-- <text wx:if="{{choosedAnswers[index][0]==1?true:flase}}">正确答案:{{answer[item.val]}}</text> -->
         <textarea style='font-size: 28rpx;' wx:if="{{choosedAnswers[index][0]==1?true:flase}}">{{item.explainText}}</textarea>
-      </view>
+      </scroll-view>
       <view class='statustab'>
         <view id='simlated' wx:if="{{status == 'simlated'}}"> 
          计时:{{wxTimer}}

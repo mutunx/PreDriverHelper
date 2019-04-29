@@ -11,7 +11,7 @@ page {
 }
 .btn_item {
   margin: 2vw;
-  font-size: 38rpx;
+  font-size: 35rpx;
   border: none;
   
 }
@@ -62,7 +62,7 @@ page {
   /* border: 3px solid #e64340; */
 }
 .content {
-  height:92%;
+  height:95%;
   display: flex;
   flex-direction: column;
   /* border: 3px solid #e64340; */
@@ -72,6 +72,9 @@ page {
   font-size: 40rpx;
   color: #736395;
   text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0
 }
 .radio {
   display: flex;

@@ -136,6 +136,20 @@ Page({
       chooses[chooseAnswer] = "warn"
       isWorry = 1
     }
+    if(that.data.status === 'simlated' && that.data.worryNum > 10) {
+      wx.showModal({
+        title: '答题统计',
+        content: '  您的答题情况' + e._relatedInfo.anchorRelatedText.split("交卷")[1],
+        showCancel: false,
+        confirmText: "返回主页",
+        success: function () {
+
+          wx: wx.navigateBack({
+            delta: 1,
+          })
+        }
+      })
+    }
     // 表示已回答
     chooses[0] = 1
     console.log(chooses)
@@ -214,8 +228,8 @@ Page({
       beginTime: "01:00:00",
       complete: function () {
         wx.showModal({
-          title: 'fff',
-          content: '  您答对了0题\r\n答错了0题\r\n0题没有答\r\n总分\r\n及格or没及格',
+          title: '答题统计',
+          content: '  您的答题情况' + e._relatedInfo.anchorRelatedText.split("交卷")[1],
           showCancel: false,
           confirmText: "返回主页",
           success: function () {
