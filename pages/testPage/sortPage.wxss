@@ -8,6 +8,14 @@ page {
   display: flex;
   height:80rpx;
 }
+.choose button {
+  margin-bottom: 40rpx;
+  border:1rpx;
+  outline: none;
+  background:#e64340a1;
+  color:#fff;
+  
+}
 .tablist .item {
   flex:auto;
   display: flex;
