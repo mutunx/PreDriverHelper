@@ -225,7 +225,7 @@ Page({
     var url = ""
     //计时器
     var wxTimer = new timer({
-      beginTime: "01:00:00",
+      beginTime: "00:45:00",
       complete: function () {
         wx.showModal({
           title: '答题统计',

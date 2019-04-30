@@ -1,4 +1,7 @@
 /* pages/statistic/statistic.wxss */
+page {
+  background-color: #f6f5ec;
+}
 ec-canvas {
   width: 100%;
   height: 100%;

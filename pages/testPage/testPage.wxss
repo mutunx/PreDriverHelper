@@ -4,6 +4,7 @@ page {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: #f6f5ec;
 }
 .content {
   font-size: 40rpx;

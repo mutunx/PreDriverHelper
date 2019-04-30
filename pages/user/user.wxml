@@ -4,5 +4,5 @@
     <open-data  type="userAvatarUrl"></open-data>
   </view>
     <open-data type="userNickName"></open-data>
-<text>总答题数:{{count}}</text>
+<text >总答题数:{{count}}</text>
 </view>

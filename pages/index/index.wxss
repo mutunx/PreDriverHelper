@@ -3,11 +3,12 @@ page {
   display: flex;
   flex-direction: column;
   height: 100%;
-  
+  background-color: #f2eada;
 }
 .tablist{
   display: flex;
   height: 80rpx;
+  background-color: #f6f5ec;
 }
 .tablist .item {
   flex: auto;
@@ -37,6 +38,7 @@ page {
 .out {
   flex: auto;
   width: 100%;
+  background-color: #f6f5ec;
 }
 .leftBtn {
   flex:2;

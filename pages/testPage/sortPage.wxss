@@ -3,6 +3,7 @@ page {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: #f2eada;
 }
 .tablist {
   display: flex;
@@ -12,7 +13,7 @@ page {
   margin-bottom: 40rpx;
   border:1rpx;
   outline: none;
-  background:#e64340a1;
+  background:#f2eada;
   color:#fff;
   
 }
@@ -32,7 +33,7 @@ page {
     left: 0;
     bottom: 0;
     right: 0;
-    background: #e64340;
+    background: #f6f5ec;
 }
 .container{
     height: 100%;
@@ -40,6 +41,7 @@ page {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: #f6f5ec;
     /* border: 3px solid #e64340; */
 }
 .out {

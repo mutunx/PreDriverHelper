@@ -9,11 +9,14 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#f2eada",
     "navigationBarTitleText": "驾校考试系统",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "color": "#f6f5ec",
+    "selectedColor": "#f6f5ec",
+    "backgroundColor": "#f2eada",
     "list": [
       {
         "pagePath": "pages/index/index",
